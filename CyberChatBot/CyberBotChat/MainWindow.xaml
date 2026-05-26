@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CyberChatBot"
         mc:Ignorable="d"
-        Title="CyberChatBot - Cybersecurity Awareness Chat" Height="700" Width="1383"
+        Title="CyberChatBot - Cybersecurity Awareness Bot" Height="700" Width="1383"
         Background="#0d1117" Foreground="#e6edf3"
         WindowStartupLocation="CenterScreen">
 
@@ -41,13 +41,13 @@
                     </TextBlock>
 
                     <TextBlock Text="Cybersecurity Awareness Bot"
-                               FontSize="20"
+                               FontSize="25"
                                Foreground="#58a6ff"
                                TextAlignment="Center"
                                Margin="0,0,0,4" Height="28"/>
 
                     <TextBlock Text="Your personal guide to staying safe online"
-                               FontSize="15"
+                               FontSize="20"
                                Foreground="White"
                                TextAlignment="Center"
                                Margin="0,0,0,28"/>
@@ -56,15 +56,15 @@
                     <Border BorderBrush="#30363d" BorderThickness="0,1,0,0" Margin="0,0,0,24"/>
 
                     <TextBlock Text="What's your name?"
-                               FontSize="20"
+                               FontSize="24"
                                Foreground="#c9d1d9"
                                Margin="0,0,0,8"/>
 
                     <!-- Name text box -->
                     <TextBox x:Name="NameInput"
-                             Height="48"
+                             Height="56"
                              Padding="12,10"
-                             FontSize="15"
+                             FontSize="20"
                              Background="#0d1117"
                              Foreground="#e6edf3"
                              CaretBrush="White"
@@ -85,10 +85,10 @@
                     <Button x:Name="StartChatBtn"
                             Content="Start Chat"
                             Click="StartChat_Click"
-                            Height="50"
+                            Height="61"
                             Background="#238636"
                             Foreground="White"
-                            FontSize="20"
+                            FontSize="25"
                             FontWeight="SemiBold"
                             Cursor="Hand"
                             BorderThickness="0"/>
@@ -134,11 +134,11 @@
                         <StackPanel VerticalAlignment="Center">
                             <TextBlock Text="CYBERSECURITY AWARENESS BOT"
                                        Foreground="#58a6ff"
-                                       FontSize="40"
+                                       FontSize="45"
                                        FontWeight="Bold"/>
                             <TextBlock Text="Your guide to staying safe online"
                                        Foreground="#8b949e"
-                                       FontSize="15"/>
+                                       FontSize="25"/>
                         </StackPanel>
                     </StackPanel>
 
@@ -146,7 +146,7 @@
                     <TextBlock Grid.Column="1"
                                Text="Secure Session"
                                Foreground="#3fb950"
-                               FontSize="11"
+                               FontSize="20"
                                VerticalAlignment="Center"/>
                 </Grid>
             </Border>
@@ -236,13 +236,13 @@
                            Grid.Column="0"
                            Text="Enter your name to begin"
                            Foreground="#8b949e"
-                           FontSize="11"/>
+                           FontSize="24"/>
 
                 <!-- Memory indicator -->
                 <TextBlock Grid.Column="1"
-                           Text="Memory: Active"
+                           Text="🧠 Memory: Active"
                            Foreground="#3fb950"
-                           FontSize="11"/>
+                           FontSize="24"/>
             </Grid>
         </Border>
     </Grid>
