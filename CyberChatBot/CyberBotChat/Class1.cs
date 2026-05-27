@@ -168,7 +168,7 @@ namespace CyberChatBot
             }
 
             // ── Memory recall — refer back to favourite topic ─────
-            string favTopic = Recall("favourite_topic");
+            string favTopic = Recall("favourite topic");
             if (favTopic != null && (input.Contains("remember") || input.Contains("what do you know about me")))
                 return $"I remember that you're interested in {favTopic}! As someone focused on {favTopic}, you might want to {GetQuickTip(favTopic)}";
 
@@ -177,7 +177,7 @@ namespace CyberChatBot
         }
 
         /// <summary>
-        /// Selects a random response for a given keyword topic (Q3).
+        /// Selects a random response for a given keyword topic.
         /// </summary>
         private string GetRandomResponse(string keyword)
         {
@@ -186,7 +186,7 @@ namespace CyberChatBot
         }
 
         /// <summary>
-        /// Detects the user's sentiment and returns an empathetic prefix (Q6).
+        /// Detects the user's sentiment and returns an empathetic prefix.
         /// </summary>
         private string DetectSentiment(string input, string userName)
         {
