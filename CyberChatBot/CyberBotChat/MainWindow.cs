@@ -156,7 +156,7 @@ namespace CyberChatBot
             AddBotMessage(response);
 
             // Update status bar if a favourite topic has been remembered
-            string favTopic = _engine.Recall("favourite_topic");
+            string favTopic = _engine.Recall("favourite topic");
             if (favTopic != null)
                 StatusText.Text = "Remembered: You're interested in " + favTopic;
 
@@ -243,7 +243,7 @@ namespace CyberChatBot
                 Foreground = isUser
                     ? new SolidColorBrush(Color.FromRgb(0, 180, 230))
                     : new SolidColorBrush(Color.FromRgb(63, 185, 80)),
-                FontSize = 11,
+                FontSize = 15,
                 FontWeight = FontWeights.SemiBold,
                 Margin = new Thickness(isUser ? 0 : 4, 0, isUser ? 4 : 0, 3),
                 HorizontalAlignment = isUser ? HorizontalAlignment.Right : HorizontalAlignment.Left
@@ -254,7 +254,7 @@ namespace CyberChatBot
             {
                 Text = text,
                 Foreground = foreground,
-                FontSize = 13,
+                FontSize = 15,
                 TextWrapping = TextWrapping.Wrap,
                 LineHeight = 22
             };
@@ -277,7 +277,7 @@ namespace CyberChatBot
             {
                 Text = DateTime.Now.ToString("HH:mm"),
                 Foreground = new SolidColorBrush(Color.FromRgb(100, 110, 120)),
-                FontSize = 10,
+                FontSize = 15,
                 Margin = new Thickness(4, 2, 4, 0),
                 HorizontalAlignment = isUser ? HorizontalAlignment.Right : HorizontalAlignment.Left
             };
