@@ -23,56 +23,48 @@ namespace CyberChatBot
         //  Keyword → Multiple Responses
         // ─────────────────────────────────────────────
         private readonly Dictionary<string, List<string>> _keywordResponses = new Dictionary<string, List<string>>
-        {
-            ["password"] = new List<string>
-            {
-                "Make sure to use strong, unique passwords for each account. Avoid using personal details in your passwords — use a mix of uppercase, lowercase, numbers, and symbols!",
-                "A good password is at least 12 characters long and doesn't contain your name or birthday. Consider using a passphrase like 'Coffee!Runs$Deep2024'.",
-                "Never reuse passwords across different sites. If one account is breached, all others become vulnerable. A password manager can help you keep track!"
-            },
-            ["phishing"] = new List<string>
-            {
-                "Phishing attacks trick you into revealing personal info by pretending to be a trusted source. Always check the sender's email address carefully before clicking any links.",
-                "Be cautious of emails with urgent language like 'Your account will be closed!' Legitimate companies rarely pressure you this way.",
-                "Hover over links before clicking — the real URL often reveals whether it's a scam. When in doubt, go directly to the official website instead."
-            },
-            ["scam"] = new List<string>
-            {
-                "Online scams often appear as too-good-to-be-true offers or urgent warnings. Verify before you trust — legitimate businesses won't rush you into decisions.",
-                "If someone contacts you unexpectedly asking for payment via gift cards or wire transfer, that's almost always a scam. Stop and verify through official channels.",
-                "Report scams to the South African Police Service (SAPS) or the South African Banking Risk Information Centre (SABRIC) to protect others."
-            },
-            ["privacy"] = new List<string>
-            {
-                "Protect your privacy by reviewing the permissions you grant apps. Many apps request access they don't actually need.",
-                "Use a VPN on public Wi-Fi to keep your browsing private. Public networks are easy targets for attackers to intercept your data.",
-                "Check your social media privacy settings regularly. Oversharing personal details can help attackers craft convincing scams targeting you specifically."
-            },
-            ["malware"] = new List<string>
-            {
-                "Malware is malicious software that can damage your system or steal your data. Keep your antivirus up to date and avoid downloading software from unknown sources.",
-                "Ransomware is a type of malware that locks your files and demands payment. Regular backups are your best defence — store them offline or in the cloud.",
-                "Signs of malware infection include slow performance, unexpected pop-ups, and programs opening on their own. Run a full antivirus scan if you notice these."
-            },
-            ["safe browsing"] = new List<string>
-            {
-                "Always look for HTTPS in the address bar before entering sensitive information. The padlock icon means the connection is encrypted.",
-                "Keep your browser and its extensions updated. Outdated software is one of the most common entry points for attackers.",
-                "Avoid clicking on pop-up ads — they can lead to malicious sites. Use an ad blocker for extra protection."
-            },
-            ["two-factor"] = new List<string>
-            {
-                "Two-factor authentication (2FA) adds an extra layer of security beyond your password. Even if your password is stolen, 2FA can stop attackers from getting in.",
-                "Use an authenticator app like Google Authenticator instead of SMS-based 2FA when possible — SMS can be intercepted through SIM-swapping attacks.",
-                "Enable 2FA on your most important accounts first: email, banking, and social media. These are the accounts attackers target most."
-            },
-            ["social engineering"] = new List<string>
-            {
-                "Social engineering exploits human psychology rather than technical weaknesses. Attackers build trust before asking for something — always verify identities independently.",
-                "Pretexting is a social engineering tactic where attackers invent a scenario to extract information. Be wary of unexpected calls from 'IT support' or 'your bank'.",
-                "Never share your OTP (one-time PIN) with anyone, even someone claiming to be from your bank. Legitimate institutions will never ask for it."
-            }
-        };
+     {
+     ["password"] = new List<string>
+     {
+        "Make sure to use strong, unique passwords for each account. Avoid using personal details in your passwords — use a mix of uppercase, lowercase, numbers, and symbols!",
+        "A good password is at least 12 characters long and doesn't contain your name or birthday. Consider using a passphrase like 'Coffee!Runs$Deep2024'.Never reuse passwords across different sites. If one account is breached, all others become vulnerable. A password manager can help you keep track!"
+    },
+    ["phishing"] = new List<string>
+    {
+        "Phishing attacks trick you into revealing personal info by pretending to be a trusted source. Always check the sender's email address carefully before clicking any links.",
+        "Be cautious of emails with urgent language like 'Your account will be closed!' Legitimate companies rarely pressure you this way.Hover over links before clicking — the real URL often reveals whether it's a scam. When in doubt, go directly to the official website instead."
+    },
+    ["scam"] = new List<string>
+    {
+        "Online scams often appear as too-good-to-be-true offers or urgent warnings. Verify before you trust — legitimate businesses won't rush you into decisions.",
+        "If someone contacts you unexpectedly asking for payment via gift cards or wire transfer, that's almost always a scam. Stop and verify through official channels.Report scams to the South African Police Service (SAPS) or the South African Banking Risk Information Centre (SABRIC) to protect others."
+    },
+    ["privacy"] = new List<string>
+    {
+        "Protect your privacy by reviewing the permissions you grant apps. Many apps request access they don't actually need.",
+        "Use a VPN on public Wi-Fi to keep your browsing private. Public networks are easy targets for attackers to intercept your data.Check your social media privacy settings regularly. Oversharing personal details can help attackers craft convincing scams targeting you specifically."
+    },
+    ["malware"] = new List<string>
+    {
+        "Malware is malicious software that can damage your system or steal your data. Keep your antivirus up to date and avoid downloading software from unknown sources.",
+        "Ransomware is a type of malware that locks your files and demands payment. Regular backups are your best defence — store them offline or in the cloud.Signs of malware infection include slow performance, unexpected pop-ups, and programs opening on their own. Run a full antivirus scan if you notice these."
+    },
+    ["safe browsing"] = new List<string>
+    {
+        "Always look for HTTPS in the address bar before entering sensitive information. The padlock icon means the connection is encrypted.",
+        "Keep your browser and its extensions updated. Outdated software is one of the most common entry points for attackers.Avoid clicking on pop-up ads — they can lead to malicious sites. Use an ad blocker for extra protection."
+    },
+    ["two-factor"] = new List<string>
+    {
+        "Two-factor authentication (2FA) adds an extra layer of security beyond your password. Even if your password is stolen, 2FA can stop attackers from getting in.",
+        "Use an authenticator app like Google Authenticator instead of SMS-based 2FA when possible — SMS can be intercepted through SIM-swapping attacks.Enable 2FA on your most important accounts first: email, banking, and social media. These are the accounts attackers target most."
+    },
+    ["social engineering"] = new List<string>
+    {
+        "Social engineering exploits human psychology rather than technical weaknesses. Attackers build trust before asking for something — always verify identities independently.",
+        "Pretexting is a social engineering tactic where attackers invent a scenario to extract information. Be wary of unexpected calls from 'IT support' or 'your bank'.Never share your OTP (one-time PIN) with anyone, even someone claiming to be from your bank. Legitimate institutions will never ask for it."
+    }
+};
 
         private readonly Random random = new Random();
 
