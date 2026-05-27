@@ -155,6 +155,14 @@ namespace CyberChatBot
             string response = _engine.GetResponse(userText);
             AddBotMessage(response);
 
+            // Handle exit command
+string userInput = userText.Trim().ToLower();
+ if (userInput == "bye")
+     {
+         AddBotMessage($"Goodbye, {_userName}! Stay safe online.");
+         return;
+     }
+
             // Update status bar if a favourite topic has been remembered
             string favTopic = _engine.Recall("favourite topic");
             if (favTopic != null)
