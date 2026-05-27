@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CyberChatBot"
         mc:Ignorable="d"
-        Title="CyberChatBot - Cybersecurity Awareness Bot" Height="760" Width="1383"
+        Title="🛡️CyberChatBot - Cybersecurity Awareness Bot" Height="760" Width="1383"
         Background="#0d1117" Foreground="#e6edf3"
         WindowStartupLocation="CenterScreen">
 
@@ -35,9 +35,7 @@
                                TextAlignment="Center"
                                Margin="0,0,0,6" Height="48">
                         
-                    <Run Text="Cyber"/>
-                        <Run Language="en-za" Text="Chat"/>
-                        <Run Text="Bot"/>
+                     <Run Text="🛡️CyberChatBot"/>
                     </TextBlock>
 
                     <TextBlock Text="Cybersecurity Awareness Bot"
