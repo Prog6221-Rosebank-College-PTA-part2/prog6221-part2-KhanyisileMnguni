@@ -110,7 +110,7 @@ namespace CyberChatBot
             AddBotMessage(
                 "Hi " + _userName + "! Welcome to the Cybersecurity Awareness Bot." +
                 "I'm here to help you stay safe online. You can ask me about:\n\n" +
-                "Passwords\n" + "Phishing\n" + "Scams & Privacy\n" + "Malware\n" + "Safe Browsing\n" + "Two-Factor Authentication\n" + "Social Engineering\n" + "What would you like to know?");
+                "Passwords\n" + "Phishing\n" + "Scams\n" + "Privacy\n" + "Malware\n" + "Safe Browsing\n" + "Two-Factor Authentication\n" + "Social Engineering\n" + "What would you like to know?");
 
             UserInput.Focus();
             StatusText.Text = "Chatting as " + _userName;
@@ -243,7 +243,7 @@ namespace CyberChatBot
                 Foreground = isUser
                     ? new SolidColorBrush(Color.FromRgb(0, 180, 230))
                     : new SolidColorBrush(Color.FromRgb(63, 185, 80)),
-                FontSize = 15,
+                FontSize = 13,
                 FontWeight = FontWeights.SemiBold,
                 Margin = new Thickness(isUser ? 0 : 4, 0, isUser ? 4 : 0, 3),
                 HorizontalAlignment = isUser ? HorizontalAlignment.Right : HorizontalAlignment.Left
