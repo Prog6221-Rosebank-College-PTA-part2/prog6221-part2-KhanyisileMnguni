@@ -1,1 +1,248 @@
+#Cybersecurity Awareness Bot
 
+A WPF desktop chatbot application built in C# (.NET Framework 4.7.2) that educates users on cybersecurity topics through an interactive, conversational GUI.
+Developed as Part 2 of the PROG6212 Programming module POE.
+
+---
+
+## Table of Contents
+
+- [Project Overview](#project-overview)
+- [Features](#features)
+- [How It Works](#how-it-works)
+- [Setup and Installation](#setup-and-installation)
+- [Usage Guide](#usage-guide)
+- [Project Structure](#project-structure)
+- [Technologies Used](#technologies-used)
+
+---
+
+## Project Overview
+
+The Cybersecurity Awareness Bot is a graphical chatbot that helps users learn about online safety.
+It expands on the Part 1 console application by introducing a full WPF GUI, sentiment-aware responses,
+memory and recall, keyword recognition, and randomised educational content.
+
+**Goal:** Make cybersecurity education accessible and engaging through natural conversation, personalised responses, and an intuitive dark-themed interface.
+
+---
+
+## Features
+
+### 1. GUI Design
+- Dark-themed WPF window with a professional cybersecurity aesthetic
+- ASCII art banner ("Cybersecurity Awareness Bot") rendered in Courier New on startup
+- Chat bubbles: user messages appear right-aligned, bot responses left-aligned
+- Timestamps on every message
+- Voice greeting plays automatically on launch using the system's `SoundPlayer`
+- Clear Chat button resets the conversation without losing memory
+
+### 2. Keyword Recognition
+The bot recognises the following cybersecurity keywords and responds with targeted guidance:
+
+| Keyword | Topic Covered |
+|---|---|
+| `password` | Strong password practices, password managers |
+| `phishing` | Identifying phishing emails, safe link habits |
+| `scam` | Online scam awareness, reporting to SAPS/SABRIC |
+| `privacy` | App permissions, VPN usage, social media settings |
+| `malware` | Types of malware, antivirus tips, ransomware |
+| `safe browsing` | HTTPS, browser updates, ad blockers |
+| `two-factor` | 2FA methods, authenticator apps, SIM-swapping |
+| `social engineering` | Pretexting, OTP protection, identity verification |
+
+### 3. Random Responses
+Each keyword topic has **3 different responses** stored in a `List<string>`.
+The bot uses `Random.Next()` to select one each time, keeping conversations varied and engaging.
+
+### 4. Conversation Flow
+The bot maintains context across messages. Follow-up phrases trigger continued responses on the last topic without restarting the conversation:
+- "Tell me more"
+- "Explain more"
+- "Give me another tip"
+- "What else?"
+- "More info"
+
+### 5. Memory and Recall
+The bot remembers user details using a `Dictionary<string, string>`:
+- **Name** — stored on entry, used to personalise all responses
+- **Favourite topic** — stored when the user expresses interest (e.g. "I'm interested in privacy") and referenced in later messages
+
+Example:
+> User: "I'm interested in phishing"
+> Bot: "Great! I'll remember that you're interested in phishing..." *(stores and responds)*
+> Later → User: "What do you remember about me?"
+> Bot: "I remember that you're interested in phishing! You might want to double-check any suspicious emails..."
+
+### 6. Sentiment Detection
+The bot detects emotional tone in messages and adjusts its response prefix:
+
+| Sentiment | Trigger Words | Bot Response Style |
+|---|---|---|
+| Worried | worried, scared, anxious, panic, fear | Empathetic and reassuring opener |
+| Frustrated | confused, frustrated, hard, don't understand | Simplified, supportive tone |
+| Curious | curious, wondering, what is, explain | Enthusiastic and informative |
+
+### 7. Error Handling
+- Unknown inputs receive a polite fallback message
+- Empty name input is caught with a visible error label (no crash)
+- Missing WAV file is caught silently (try/catch) — the app continues running
+
+### 8. Code Structure and Optimisation
+- `ChatbotEngine` class handles all chatbot logic (separate from UI)
+- `MainWindow.xaml.cs` handles all UI rendering and event handling
+- `Dictionary<string, List<string>>` used for keyword-to-response mapping
+- `List<string>` collections used for sentiment word groups and follow-up phrases
+- All methods have full XML `<summary>` documentation comments
+- Clear separation of concerns: engine logic never references UI elements
+
+---
+
+## How It Works
+
+### Application Flow
+
+```
+App Launch
+    │
+    ▼
+Voice greeting plays (Voice_message.wav)
+    │
+    ▼
+Name Entry Screen shown
+    │
+    ▼
+User enters name → stored in ChatbotEngine memory
+    │
+    ▼
+ASCII art banner displayed in chat
+    │
+    ▼
+Welcome message personalised with user's name
+    │
+    ▼
+Chat Loop:
+  User types message → SendMessage() called
+      │
+      ├─ Follow-up phrase? → Continue last topic
+      │
+      ├─ Sentiment detected? → Add empathetic prefix
+      │
+      ├─ Keyword matched? → Random response from List
+      │       └─ Interest expressed? → Store favourite topic
+      │
+      ├─ General question? → Standard response
+      │
+      └─ No match? → Fallback error message
+```
+
+### Class Responsibilities
+
+**`ChatbotEngine` (Class1.cs)**
+- Holds all keyword responses in `_keywordResponses` dictionary
+- Manages memory via `_memory` dictionary
+- Detects sentiment via word list matching
+- Tracks last topic for conversation flow
+- Exposes `GetResponse()`, `Remember()`, `Recall()`
+
+**`MainWindow.xaml.cs`**
+- Handles all WPF UI events (button clicks, key presses)
+- Renders chat bubbles dynamically in code (`CreateBubble()`)
+- Displays ASCII art banner via `AddAsciiMessage()`
+- Plays voice greeting via `SoundPlayer`
+- Updates status bar with memory feedback
+
+---
+
+## Setup and Installation
+
+### Requirements
+- Windows OS
+- Visual Studio 2019 or later
+- .NET Framework 4.7.2
+
+### Steps
+
+1. **Clone the repository:**
+   ```
+   git clone https://github.com/KhanyisileMnguni/CyberBotChat.git
+   ```
+
+2. **Open the solution:**
+   - Open `CyberChatBot.slnx` in Visual Studio
+
+3. **Check the WAV file path:**
+   - Open `MainWindow.xaml.cs`
+   - Update line 18 to match the location of `Voice_message.wav` on your machine:
+     ```csharp
+     private readonly string _wavPath = @"C:\Your\Path\To\Voice_message.wav";
+     ```
+
+4. **Build and run:**
+   - Press `F5` or go to **Debug → Start Debugging**
+
+---
+
+## Usage Guide
+
+| Action | How |
+|---|---|
+| Start a chat | Enter your name and click **Start Chat** or press **Enter** |
+| Ask about a topic | Type any message containing a keyword (e.g. "Tell me about passwords") |
+| Get more info | Type "tell me more" or "explain more" after any response |
+| Express interest | Type "I'm interested in privacy" to save your favourite topic |
+| Check memory | Type "what do you know about me?" |
+| Clear the chat | Click the **Clear Chat** button (memory is preserved) |
+| Exit | Close the window |
+
+### Example Conversations
+
+**Keyword recognition:**
+> You: "How do I stay safe with passwords?"
+> Bot: "Never reuse passwords across different sites. A password manager can help you keep track!"
+
+**Sentiment detection:**
+> You: "I'm really worried about online scams"
+> Bot: "It's completely understandable to feel that way — cybersecurity can feel overwhelming.
+You're taking the right step by learning about it! Here's what you need to know: Online scams often appear as too-good-to-be-true offers..."
+
+**Conversation flow:**
+> You: "Tell me about phishing"
+> Bot: *(responds with a phishing tip)*
+> You: "Give me another tip"
+> Bot: "Sure! Here's more about phishing: Be cautious of emails with urgent language..."
+
+**Memory recall:**
+> You: "I'm interested in privacy"
+> Bot: "Great! I'll remember that you're interested in privacy..."
+> *(later)*
+> You: "What do you know about me?"
+> Bot: "I remember that you're interested in privacy! You might want to check your social media privacy settings this week."
+
+---
+
+## Project Structure
+
+```
+CyberBotChat/
+├── CyberChatBot.slnx          ← Solution file
+├── CyberBotChat/
+│   ├── CyberChatBot.csproj    ← Project file (.NET Framework 4.7.2)
+│   ├── App.xaml               ← Application entry point
+│   ├── App.xaml.cs            ← App code-behind
+│   ├── MainWindow.xaml        ← GUI layout (WPF XAML)
+│   ├── MainWindow.cs          ← UI logic and bubble rendering
+│   ├── Class1.cs              ← ChatbotEngine: all chatbot logic
+│   └── Voice_message.wav      ← Voice greeting audio file
+```
+
+---
+
+## Technologies Used
+
+- **C#** — primary programming language
+- **WPF (Windows Presentation Foundation)** — GUI framework
+- **.NET Framework 4.7.2** — target runtime
+- **XAML** — UI layout and styling
+- **System.Media.SoundPlayer** — WAV audio playback
+- **Git & GitHub** — version control and repository hosting
