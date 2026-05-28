@@ -145,31 +145,34 @@ namespace CyberChatBot
         /// and updates the status bar with any remembered topic.
         /// </summary>
         public void SendMessage()
-        {
-            string userText = UserInput.Text.Trim();
-            if (string.IsNullOrWhiteSpace(userText)) return;
+{
+    string userText = UserInput.Text.Trim();
+    if (string.IsNullOrWhiteSpace(userText)) return;
 
-            AddUserMessage(userText);
-            UserInput.Clear();
+    AddUserMessage(userText);
+    UserInput.Clear();
 
-            string response = _engine.GetResponse(userText);
-            AddBotMessage(response);
+    // ── Exit command — checked BEFORE GetResponse
+    // This stops the fallback message firing alongside the goodbye
+    if (userText.ToLower() == "bye" || userText.ToLower() == "thank you, bye" || userText.ToLower() == "exit")
+    {
+        AddBotMessage("Goodbye, " + _userName + "! Stay safe online.");
+        SendButton.IsEnabled = false;
+        UserInput.IsEnabled = false;
+        StatusText.Text = "Session ended. Close the window to exit.";
+        return;
+    }
 
-            // Handle exit command
-string userInput = userText.Trim().ToLower();
- if (userInput == "bye")
-     {
-         AddBotMessage($"Goodbye, {_userName}! Stay safe online.");
-         return;
-     }
+    string response = _engine.GetResponse(userText);
+    AddBotMessage(response);
 
-            // Update status bar if a favourite topic has been remembered
-            string favTopic = _engine.Recall("favourite topic");
-            if (favTopic != null)
-                StatusText.Text = "Remembered: You're interested in " + favTopic;
+    // Update status bar if a favourite topic has been remembered
+    string favTopic = _engine.Recall("favourite_topic");
+    if (favTopic != null)
+        StatusText.Text = "Remembered: You're interested in " + favTopic;
 
-            ScrollToBottom();
-        }
+    ScrollToBottom();
+}
 
         // ─────────────────────────────────────────────
         //  Chat Bubble Rendering
