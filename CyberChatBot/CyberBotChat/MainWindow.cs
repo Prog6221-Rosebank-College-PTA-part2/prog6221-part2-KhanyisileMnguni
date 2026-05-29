@@ -154,7 +154,7 @@ namespace CyberChatBot
 
     // ── Exit command — checked BEFORE GetResponse
     // This stops the fallback message firing alongside the goodbye
-    if (userText.ToLower() == "bye" || userText.ToLower() == "thank you, bye" || userText.ToLower() == "exit")
+    if (userText.ToLower() == "bye" || userText.ToLower() == "thank you,bye" || userText.ToLower() == "exit")
     {
         AddBotMessage("Goodbye, " + _userName + "! Stay safe online.");
         SendButton.IsEnabled = false;
