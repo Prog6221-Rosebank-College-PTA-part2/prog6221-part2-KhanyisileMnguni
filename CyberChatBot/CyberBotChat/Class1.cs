@@ -168,7 +168,7 @@ namespace CyberChatBot
             }
 
             // ── Memory recall — refer back to favourite topic ─────
-            string favTopic = Recall("favourite topic");
+            string favTopic = Recall("favourite_topic");
             if (favTopic != null && (input.Contains("remember") || input.Contains("what do you know about me")))
                 return $"I remember that you're interested in {favTopic}! As someone focused on {favTopic}, you might want to {GetQuickTip(favTopic)}";
 
